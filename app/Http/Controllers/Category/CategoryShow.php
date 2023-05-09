@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Domain\Category\Controllers;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Domain\Category\Resources\CategoryResource;
-use App\Domain\Category\Models\Category;
+use App\Http\Resources\CategoryResource;
+use App\Models\Category;
 
 class CategoryShow extends Controller
 {

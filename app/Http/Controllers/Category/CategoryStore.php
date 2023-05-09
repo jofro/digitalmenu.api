@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Domain\Category\Controllers;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Domain\Category\Requests\CategoryStoreRequest;
-use App\Domain\Category\Resources\CategoryResource;
-use App\Domain\Category\Models\Category;
+use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Resources\CategoryResource;
+use App\Models\Category;
 
 class CategoryStore extends Controller
 {
@@ -20,6 +20,7 @@ class CategoryStore extends Controller
         $category = Category::create([
             'name' => $request->name,
         ]);
+        
         return CategoryResource::make($category);
     }
 }

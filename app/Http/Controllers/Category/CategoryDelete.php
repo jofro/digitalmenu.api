@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\Domain\Category\Controllers;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Domain\Category\Resources\CategoryResource;
-use App\Domain\Category\Models\Category;
+use App\Http\Resources\CategoryResource;
+use App\Models\Category;
 
-class CategoryIndex extends Controller
+class CategoryDelete extends Controller
 {
     /**
      * Display a listing of the resource.
