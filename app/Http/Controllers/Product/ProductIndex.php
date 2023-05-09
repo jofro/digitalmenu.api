@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
@@ -16,6 +16,8 @@ class ProductIndex extends Controller
     {
         $product = Product::query()->get();
 
+        dd($product);
+        
         return ProductResource::collection($product);
     }
 }

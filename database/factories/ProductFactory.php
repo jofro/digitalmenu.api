@@ -19,7 +19,7 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->name(),
             'category' => 1,
-            'price' => fake()->doubleval(),
+            'price' => 1.00,
             'currency' => 'EUR'
         ];
     }

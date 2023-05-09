@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('users')->insert([
-            'name' => 'admin',
-            'email' => 'admin@opintor.com',
-            'password' => Hash::make('admin'),
-        ]);
+        // DB::table('users')->insert([
+        //     'name' => 'admin',
+        //     'email' => 'admin@opintor.com',
+        //     'password' => Hash::make('admin'),
+        // ]);
 
         Category::factory()->count(10)->create();
         Product::factory()->count(50)->create();
