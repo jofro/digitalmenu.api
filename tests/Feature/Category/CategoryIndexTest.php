@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Category;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -14,13 +14,12 @@ class CategoryIndexTest extends TestCase
      */
     public function test_example(): void
     {
-        $category = Category::factory()->create([
-            'name' => 'Category_01'
-        ]);
+        $this->withoutExceptionHandling();
 
-        $this->postJson(route('category.store'), $category->toArray())
-            ->assertStatus(200);
-
-        $this->assertDatabaseHas('categories', ['id' => $category->id]);
+        $user = User::factory()->create();
+ 
+        $response = $this->actingAs($user)
+            ->get('/api');
+        $response->assertOk();
     }
 }

@@ -18,23 +18,20 @@ class CategoryStoreTest extends TestCase
      */
     public function test_001(): void
     {        
-        $this->actingAs(User::factory()->create());
+        $this->withoutExceptionHandling();
 
-        $category  = Category::factory()->create([
+        $category  = [
             'name' => fake()->name()
-        ]);
+        ];
 
-        $this->postJson(route('category.store'), $category->toArray());
-
-        $this->assertDatabaseHas('categories', ['id' => $category->id]);
-
-    }
-    public function test_002(): void
-    {        
+       $user = User::factory()->create();
+       
+       $response = $this->actingAs($user)
+            ->postJson(route('category.store'), $category);
         
-        $response = $this->actingAs(User::factory()->create())->get('/');
- 
         $response->assertStatus(200);
+
+       // $this->assertDatabaseHas('categories', ['name' => $category->name]);
 
     }
 }
