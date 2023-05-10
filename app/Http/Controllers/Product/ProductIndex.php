@@ -14,9 +14,7 @@ class ProductIndex extends Controller
      */
     public function handle()
     {
-        $product = Product::query()->get();
-
-        dd($product);
+        $product = Product::query()->get();        
         
         return ProductResource::collection($product);
     }
