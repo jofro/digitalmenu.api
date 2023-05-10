@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 //     Route::get('/', \App\Http\Controllers\Product\ProductIndex::class); 
 // });
 Route::get('/', \App\Http\Controllers\Product\ProductIndex::class); 
+Route::post('/categories', \App\Http\Controllers\Category\CategoryStore::class)->name('category.store'); 
 Route::patch('register', App\Http\Controllers\Auth\AuthRegister::class)->name('register');
 Route::post('login', App\Http\Controllers\Auth\AuthLogin::class)->name('login');
 
