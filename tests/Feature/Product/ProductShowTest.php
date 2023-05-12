@@ -2,19 +2,25 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\Product;
+use App\Models\User;
 use Tests\TestCase;
 
 class ProductShowTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
     public function test_example(): void
     {
-        $response = $this->get('/');
+        $product = Product::factory()->create();
 
-        $response->assertStatus(200);
+        $user = User::factory()->create();
+        
+        $response = $this->actingAs($user)
+            ->getJson(route('product.show', ['product' =>$product->id]));
+
+        $response->assertStatus(200)
+            ->assertJsonFragment([
+                'id' => $product->id,
+                'name' => $product->name
+            ]);
     }
 }

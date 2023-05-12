@@ -2,19 +2,26 @@
 
 namespace Tests\Feature;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class ProductDeleteTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    public function test_001(): void
     {
-        $response = $this->get('/');
-
+        $this->withExceptionHandling();
+        $product = Product::factory()->create();
+ 
+        $user = User::factory()->create();
+ 
+        $response = $this->actingAs($user)
+            ->deleteJson(route('product.delete', $product->id));
+            
+//       $this->assertModelMissing($product);
+        
         $response->assertStatus(200);
     }
 }

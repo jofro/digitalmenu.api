@@ -2,19 +2,17 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\User;
 use Tests\TestCase;
 
 class ProductIndexTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    public function test_001(): void
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $user = User::factory()->create();
+ 
+        $this->actingAs($user)
+            ->getJson(route('product.index'))
+            ->assertStatus(200);
     }
 }
