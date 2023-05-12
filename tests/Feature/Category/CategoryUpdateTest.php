@@ -1,20 +1,28 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Category;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\Category;
+use App\Models\User;
 use Tests\TestCase;
 
 class CategoryUpdateTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    public function test_001(): void
     {
-        $response = $this->get('/');
+        $category = Category::factory()->create();
 
-        $response->assertStatus(200);
+        $user = User::factory()->create();
+
+        $categoryModified  = [
+            'name' => 'name_changed'
+        ];
+
+        $this->actingAs($user)
+            ->patch(route('category.update', ['category' => $category->id]) ,  $categoryModified)
+            ->assertJsonFragment([
+                'id' => $category->id,
+                'name' => 'name_changed'
+            ])->assertStatus(200);
     }
 }

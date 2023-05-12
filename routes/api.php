@@ -26,15 +26,15 @@ Route::post('login', App\Http\Controllers\Auth\AuthLogin::class)->name('login');
 */
 Route::middleware('auth:sanctum')->group(function(){
 
-    Route::get('/', \App\Http\Controllers\Product\ProductIndex::class)->name('/'); 
+    //Route::get('/', \App\Http\Controllers\Product\ProductIndex::class)->name('/'); 
     /*
     |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     | Category Routes
     |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     */
     Route::get('category/index', \App\Http\Controllers\Category\CategoryIndex::class)->name('category.index');
-    Route::post('category/store', \App\Http\Controllers\Category\CategoryStore::class)->name('category.store'); 
     Route::get('category/{category}/show', \App\Http\Controllers\Category\CategoryShow::class)->name('category.show');
+    Route::post('category/store', \App\Http\Controllers\Category\CategoryStore::class)->name('category.store'); 
     Route::patch('category/{category}/update', \App\Http\Controllers\Category\CategoryUpdate::class)->name('category.update');
     Route::delete('category/{category}/delete', \App\Http\Controllers\Category\CategoryDelete::class)->name('category.delete');
     /*

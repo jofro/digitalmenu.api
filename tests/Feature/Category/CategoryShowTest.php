@@ -2,19 +2,25 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\Category;
+use App\Models\User;
 use Tests\TestCase;
 
 class CategoryShowTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     */
-    public function test_example(): void
+    public function test_001(): void
     {
-        $response = $this->get('/');
+        $category = Category::factory()->create();
 
-        $response->assertStatus(200);
+        $user = User::factory()->create();
+        
+        $response = $this->actingAs($user)
+            ->getJson(route('category.show', ['category' =>$category->id]));
+
+        $response->assertStatus(200)
+            ->assertJsonFragment([
+                'id' => $category->id,
+                'name' => $category->name
+            ]);
     }
 }
