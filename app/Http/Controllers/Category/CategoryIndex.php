@@ -14,7 +14,6 @@ class CategoryIndex extends Controller
      */
     public function handle()
     {
-        dd('hola');
         $category = Category::query()->get();
         return CategoryResource::collection($category);
     }

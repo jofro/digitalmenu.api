@@ -20,7 +20,7 @@ class CategoryStore extends Controller
         $category = Category::create([
             'name' => $request->name,
         ]);
-        
+
         return CategoryResource::make($category);
     }
 }

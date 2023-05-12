@@ -19,6 +19,9 @@ class ProductStore extends Controller
     {
         $product = Product::create([
             'name' => $request->name,
+            'category' => $request->category,
+            'price' => $request->price,
+            'currency' => $request->currency
         ]);
         
         return ProductResource::make($product);

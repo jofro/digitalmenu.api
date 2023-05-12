@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App\Http\Controllers\Category;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 
 class CategoryDelete extends Controller
@@ -12,11 +10,11 @@ class CategoryDelete extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function handle()
+    public function handle(int $category)
     {
-        $category = Category::query()->get();
+        $category = Category::findOrFail($category);
 
-        return CategoryResource::collection($category);
+        $category->delete();
     }
 
  
